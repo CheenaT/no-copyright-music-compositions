@@ -5,6 +5,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import styled from 'styled-components';
+import { compositions } from '../../constants'
+import { Context } from '../../context.js';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -26,6 +28,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     overflow: 'auto',
     maxHeight: 650,
+    color: 'black',
   },
   listSection: {
     backgroundColor: 'inherit',
@@ -47,21 +50,28 @@ function ListOfCompositions() {
   `;
 
   return (
-    <StyledList className={classes.root} subheader={<li />}>
-      {[0, 1, 2, 3, 4].map(sectionId => (
-        <li key={`section-${sectionId}`} className={classes.listSection}>
-          <ul className={classes.ul}>
-            <ListSubheader>{`I'm pinned ${sectionId}`}</ListSubheader>
-            {Array.apply(null, { length: 5 }).map((item, i) => (
-              <ListItem key={`item-${i}`}>
-                <ListItemText primary={`Item`} />
-              </ListItem>
-            ))}
-          </ul>
-        </li>
-      ))}
-    </StyledList>
+    <Context.Consumer>
+      {({ currentComposition, setCurrentComposition }) => (
+        <StyledList className={classes.root} subheader={<li />}> {console.log('debug setCurrentComposition : ', setCurrentComposition)}
+          {[0, 1, 2, 3, 4].map(sectionId => (
+            <li key={`section-${sectionId}`} className={classes.listSection}>
+              <ul className={classes.ul}>
+                <ListSubheader>{`Diverso`}</ListSubheader>
+                {compositions.map((el, i) => (
+                  <ListItem key={"composition" + i} onClick={() => setCurrentComposition(el.id)}>
+                    <ListItemText
+                      primary={el.author.replace(/by /, "") + " - " + el.name}
+                    />
+                  </ListItem>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </StyledList>
+      )}
+    </Context.Consumer>
   );
+
 }
 
 export default ListOfCompositions;

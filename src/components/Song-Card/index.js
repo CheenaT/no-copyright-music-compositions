@@ -10,6 +10,8 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import { compositions } from '../../constants';
+import { Context } from '../../context.js';
+import ListOfCompositions from '../List-Of-Compositions';
 
 function importAll(r) {
   return r.keys().map(r);
@@ -52,6 +54,7 @@ function SongCard() {
   const [currentComposition, setCurrentComposition] = useState(0);
 
   return (
+    <Context.Provider value={{currentComposition, setCurrentComposition}}>
     <Card className={classes.card}>
 		<audio ref={audioElement} id="card__audio" src={compositions[currentComposition].compositionUrl} />
       <div className={classes.details}>
@@ -81,7 +84,7 @@ function SongCard() {
           </IconButton>
           <IconButton aria-label="Next" onClick={() => {
             console.log('onClick')
-            if (currentComposition < 1) {
+            if (currentComposition < compositions.length - 1) {
               setAudioIsPlaying(false);
               setCurrentComposition(currentComposition + 1);
               console.log('true')
@@ -101,6 +104,8 @@ function SongCard() {
         title="Live from space album cover"
       />
     </Card>
+    <ListOfCompositions className="main__list-of-compositions"/>
+    </Context.Provider>
   );
 }
 
