@@ -41,6 +41,7 @@ const useStyles = makeStyles(theme => ({
 
 function ListOfCompositions() {
   const classes = useStyles();
+  const q =document.querySelector.bind(document);
   const StyledList = styled(List)`
     && { /* some hack to avoid !important for few properties */
       position: absolute;
@@ -52,16 +53,19 @@ function ListOfCompositions() {
   return (
     <Context.Consumer>
       {({ currentComposition, setCurrentComposition }) => (
-        <StyledList className={classes.root} subheader={<li />}> {console.log('debug setCurrentComposition : ', setCurrentComposition)}
+        <StyledList className={classes.root} subheader={<li />}>
           {[0, 1, 2, 3, 4].map(sectionId => (
             <li key={`section-${sectionId}`} className={classes.listSection}>
               <ul className={classes.ul}>
-                <ListSubheader>{`Diverso`}</ListSubheader>
+                <ListSubheader>{`Classic`}</ListSubheader>
                 {compositions.map((el, i) => (
-                  <ListItem key={"composition" + i} onClick={() => setCurrentComposition(el.id)}>
-                    <ListItemText
-                      primary={el.author.replace(/by /, "") + " - " + el.name}
-                    />
+                  <ListItem
+                    button
+                    className={"composition" + i + sectionId}
+                    key={"composition" + i}
+                    onClick={() => setCurrentComposition(el.id)}
+                  >
+                    <ListItemText primary={el.author.replace(/by /, "") + " - " + el.name} />
                   </ListItem>
                 ))}
               </ul>

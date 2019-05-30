@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="main">
       <header className="main-header">
+        <div className="header__account-id">Cheena's playlist</div>
         <img className="main__page-logo" src={PageLogo} alt="" width='100px' height='100px'/>
         <source/>
 		    <SongCard/>

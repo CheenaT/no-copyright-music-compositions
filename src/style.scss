@@ -1,3 +1,13 @@
+@font-face {
+    font-family: "Helvetica Neue";
+    font-display: swap;
+    src: url("//db.onlinewebfonts.com/t/bd5e1f66dd4636249e49ef9c3f0958c0.eot");
+    src: url("//db.onlinewebfonts.com/t/bd5e1f66dd4636249e49ef9c3f0958c0.eot?#iefix") format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/bd5e1f66dd4636249e49ef9c3f0958c0.woff2") format("woff2"),
+    url("//db.onlinewebfonts.com/t/bd5e1f66dd4636249e49ef9c3f0958c0.woff") format("woff"),
+    url("//db.onlinewebfonts.com/t/bd5e1f66dd4636249e49ef9c3f0958c0.ttf") format("truetype"),
+    url("//db.onlinewebfonts.com/t/bd5e1f66dd4636249e49ef9c3f0958c0.svg#Helvetica Neue LT Pro") format("svg");
+}
 .main__page-logo {
   position: absolute;
   left: 2.5%;
@@ -15,4 +25,11 @@
 }
 .main__list-of-compositions {
   position: absolute;
+}
+.header__account-id {
+  position: absolute;
+  left: 9.5%;
+  top: 4.5%;
+  font-family: "Helvetica Neue";
+  font-size: 40px;
 }
