@@ -10,8 +10,8 @@
 }
 .main__page-logo {
   position: absolute;
-  left: 2.5%;
-  top: 2.5%;
+  left: 43px;
+  top: 21px;
 }
 .main-header {
   background-color: #1E191A;
@@ -28,8 +28,13 @@
 }
 .header__account-id {
   position: absolute;
-  left: 9.5%;
-  top: 4.5%;
+  left: 162px;
+  top: 38px;
   font-family: "Helvetica Neue";
   font-size: 40px;
+}
+@media screen and (max-width: 375px) {
+  width: 375px;
+  height: 667px;
+
 }

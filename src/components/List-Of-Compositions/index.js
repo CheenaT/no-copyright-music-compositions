@@ -7,6 +7,13 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import styled from 'styled-components';
 import { compositions } from '../../constants'
 import { Context } from '../../context.js';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -23,7 +30,8 @@ const useStyles = makeStyles(theme => ({
   },
   root: {
     width: '100%',
-    maxWidth: 360,
+    height: 650,
+    maxWidth: 375,
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
     overflow: 'auto',
@@ -33,13 +41,30 @@ const useStyles = makeStyles(theme => ({
   listSection: {
     backgroundColor: 'inherit',
   },
+  listItem: {
+    display: 'block',
+  },
   ul: {
     backgroundColor: 'inherit',
     padding: 0,
   },
+  dialog: {
+
+  },
+  dialogTitle: {
+    height: 400,
+  },
+  button: {
+    position: 'absolute',
+    bottom: 25,
+    color: '#000',
+    backgroundColor: 'white',
+
+  },
 }));
 
 function ListOfCompositions() {
+  const [open, setOpen] = React.useState(false);
   const classes = useStyles();
   const q =document.querySelector.bind(document);
   const StyledList = styled(List)`
@@ -47,25 +72,33 @@ function ListOfCompositions() {
       position: absolute;
       top: 50px;
       left: 1100px;
+      @media (max-width: 375.2px) {
+        {/*top: 434px;*/}
+        left: 0px;
+        height: 374px;
+      }
     }
   `;
-
-  return (
+  const list = (
     <Context.Consumer>
       {({ currentComposition, setCurrentComposition }) => (
         <StyledList className={classes.root} subheader={<li />}>
-          {[0, 1, 2, 3, 4].map(sectionId => (
+          {['Classic', 'Johannes Brahms', 'Andrea Bocelli', 'Pyotr Tchaikovsky', 'Amadeus Mozart'].map(sectionId => (
             <li key={`section-${sectionId}`} className={classes.listSection}>
               <ul className={classes.ul}>
-                <ListSubheader>{`Classic`}</ListSubheader>
+                <Divider/>
+                <ListSubheader>{sectionId}</ListSubheader>
+                <Divider/>
                 {compositions.map((el, i) => (
                   <ListItem
+                    divider
                     button
-                    className={"composition" + i + sectionId}
+                    className={classes.listItem}
                     key={"composition" + i}
-                    onClick={() => setCurrentComposition(el.id)}
+                    onClick={() => { setCurrentComposition(el.id); setOpen(false) } }
                   >
-                    <ListItemText primary={el.author.replace(/by /, "") + " - " + el.name} />
+                    <ListItemText primary={el.author.replace(/by /, "")} />
+                    <ListItemText primary={el.name} />
                   </ListItem>
                 ))}
               </ul>
@@ -73,9 +106,23 @@ function ListOfCompositions() {
           ))}
         </StyledList>
       )}
-    </Context.Consumer>
+      </Context.Consumer>
   );
 
+  if (window.innerWidth < 376) {
+    return (
+          <React.Fragment>
+            <Button className={classes.button} variant="contained" onClick={() => setOpen(true)}>
+              Compositions
+            </Button>
+            <Dialog open={open} className={classes.dialog} maxWidth = {'xl'} fullWidth={true}>
+              <DialogTitle id="simple-dialog-title" className={classes.dialogTitle} >Set backup account</DialogTitle>
+                {list}
+            </Dialog>
+          </React.Fragment>
+    );
+  }
+  return list;
 }
 
 export default ListOfCompositions;
