@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dbb17a9b8c759f04bfb522d992a437ba",
+    "revision": "e14b570a32f7a56d316ae725867ce05e",
     "url": "/no-copyright-music-compositions/index.html"
   },
   {
-    "revision": "21950a8a67c5f1fdadbc",
-    "url": "/no-copyright-music-compositions/static/css/main.e8047d6b.chunk.css"
+    "revision": "3ad0534e8c59ea19bad9",
+    "url": "/no-copyright-music-compositions/static/css/main.37e14c92.chunk.css"
   },
   {
-    "revision": "8052499c00e5d8588421",
-    "url": "/no-copyright-music-compositions/static/js/2.d502e264.chunk.js"
+    "revision": "f556d7bad3e749dbf4fd",
+    "url": "/no-copyright-music-compositions/static/js/2.ab606568.chunk.js"
   },
   {
-    "revision": "21950a8a67c5f1fdadbc",
-    "url": "/no-copyright-music-compositions/static/js/main.3eab8561.chunk.js"
+    "revision": "3ad0534e8c59ea19bad9",
+    "url": "/no-copyright-music-compositions/static/js/main.37f4b0a5.chunk.js"
   },
   {
     "revision": "6089a1322a6734a5f707",
