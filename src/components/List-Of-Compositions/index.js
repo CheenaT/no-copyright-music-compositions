@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     height: 650,
-    maxWidth: 375,
+    maxWidth: 564,
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
     overflow: 'auto',
@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
 
   },
   dialogTitle: {
-    height: 400,
+    height: window.orientation === 90 ? 247 : 400,
   },
   button: {
     position: 'absolute',
@@ -72,11 +72,16 @@ function ListOfCompositions() {
       position: absolute;
       top: 50px;
       left: 1100px;
+      @media (max-width: 667.2px) and (orientation: landscape) {
+        left: 0px;
+        height: 221px;
+      }
       @media (max-width: 375.2px) {
         {/*top: 434px;*/}
         left: 0px;
         height: 374px;
       }
+
     }
   `;
   const list = (
@@ -109,10 +114,10 @@ function ListOfCompositions() {
       </Context.Consumer>
   );
 
-  if (window.innerWidth < 376) {
+  if (window.innerWidth < 376 || window.orientation === 90) {
     return (
           <React.Fragment>
-            <Button className={classes.button} variant="contained" onClick={() => setOpen(true)}>
+            <Button className={classes.button + ' button-compositions'} variant="contained" onClick={() => setOpen(true)}>
               Compositions
             </Button>
             <Dialog open={open} className={classes.dialog} maxWidth = {'xl'} fullWidth={true}>
